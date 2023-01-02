@@ -111,8 +111,8 @@ make modules_install
 # (We don't save it as bzImage in case we overwrite the kernel we're actually running
 # so after the build process is done, the user will need to shutdown WSL and then rename
 # the bzImage-new kernel to bzImage)
-mkdir -p /mnt/c/ZFSonWSL
-cp -fv /usr/src/linux-${KERNELVER}-${KERNELNAME}/arch/x86/boot/bzImage /mnt/c/ZFSonWSL/bzImage-new
+mkdir -p "$KERNELDIR"
+cp -fv /usr/src/linux-${KERNELVER}-${KERNELNAME}/arch/x86/boot/bzImage "$KERNELDIR/bzImage-$KERNELVER-$KERNELNAME"
 
 # Tar up the build directories for the kernel and for ZFS
 # Mostly useful for our GitLab CI process but might help with redistribution

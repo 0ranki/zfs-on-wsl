@@ -58,6 +58,9 @@ wget https://raw.githubusercontent.com/microsoft/WSL2-Linux-Kernel/master/Micros
 # Use our custom localversion so we can tell when we've actually successfully installed one of our custom kernels
 sed -i 's/^CONFIG_LOCALVERSION=.*/CONFIG_LOCALVERSION="-${KERNELNAME}"/g' /usr/src/linux-${KERNELVER}-${KERNELNAME}/.config
 
+# Fix WSL not being able to mount Windows filesystems under /mnt
+sed -i 's/^.*CONFIG_NET_9P_VIRTIO.*$/CONFIG_NET_9P_VIRTIO=y/' /usr/src/linux-${KERNELVER}-${KERNELNAME}/.config
+
 # Enter the kernel directory
 cd /usr/src/linux-${KERNELVER}-${KERNELNAME}
 
